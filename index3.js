@@ -11,5 +11,9 @@ app.get("/home",(req,res)=>{
 })
 app.get("/home/page",(req,res)=>{
     console.log("req.url")
+    console.log(req.method)
+    console.log(req.body)
+    console.log(req.headers.authorization)
     res.send("response from server for /home/page")
 })
+
