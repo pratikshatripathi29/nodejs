@@ -3,7 +3,10 @@ const app = express();
 app.listen(8080, () => {
   console.log("Server Started....");
 });
-app.use(express.json())
+const greet=(req,res,next)=>{
+    console.log("Hello")
+}
+app.use(express.json()) 
 let users = [
   { id: 1, name: "avi", email: "avi@mail.com", role: "Student" },
 
@@ -24,6 +27,8 @@ app.post("/", (request, response) => {
 });
 
 app.delete("/:id",(request,response)=>{
+    users=users.filter(users)=> {users.id !== Number(req.params,id)}
+    response.json()
 
 })
 
@@ -32,8 +37,7 @@ app.get("/:id", (request, response) => {
   if (user) {
     response.json(user);
   }
-});
-
+})
 
 
 
