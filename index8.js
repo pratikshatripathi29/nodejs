@@ -1,30 +1,56 @@
-import express from 'express'
-
-const app = express()
-
+import express, { request, response } from "express";
+const app = express();
 app.listen(8080, () => {
-    console.log("Server started at http://localhost:8080")
+  console.log("Server Started....");
+});
+app.use(express.json())
+let users = [
+  { id: 1, name: "avi", email: "avi@mail.com", role: "Student" },
+
+  { id: 2, name: "satyam", email: "satyam@mail.com", role: "admin" },
+
+  { id: 3, name: "vivaan", email: "vivaan@mail.com", role: "Student" },
+];
+
+app.get("/", (request, response) => {
+  response.json(users);
+});
+
+app.post("/", (request, response) => {
+//   console.log(request.body);
+  const user = request.body
+  users.push(user)
+  response.json(users);
+});
+
+app.delete("/:id",(request,response)=>{
+
 })
 
-app.get("/", (req, res) => {
-    const users = [
-        {
-            name: "John",
-            email: "john@gmail.com",
-            role: "student"
-        },
-        {
-            name: "Cathy",
-            email: "cathy@gmail.com",
-            role: "student"
-        },
-        {
-            name: "Admin",
-            email: "admin@gmail.com",
-            role: "admin"
-        }
-    ]
+app.get("/:id", (request, response) => {
+  const user = users.find((user) => user.id === Number(request.params.id));
+  if (user) {
+    response.json(user);
+  }
+});
 
-    res.send(users)
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
