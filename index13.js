@@ -1,17 +1,14 @@
-// import express from "express"
-// const app = express();
-// app.listen(8080, () => console.log("Server started"));
+import express from "express";
+import userRouter from "./routes/userRouter.js";
+import productRouter from "./routes/productRouter.js";
 
-// const Router = express.Router();
+const app = express();
+app.use(express.json());
 
+// Mount routers
+app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
 
-// Router.get("/", (req, res) => {
-//     res.send("Hello");
-// });
-
-// Router.post("/", (req, res) => {
-//     res.send("This is post request");
-// });
-
-// app.use("/api/users", Router);
-
+app.listen(8080, () => {
+    console.log("Server Started......");
+});
